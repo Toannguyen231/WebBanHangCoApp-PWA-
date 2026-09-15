@@ -1,5 +1,8 @@
 import { useState, useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import BeforeAfterSlider from '../components/ui/BeforeAfterSlider'
+import CraftJourneyTimeline from '../components/ui/CraftJourneyTimeline'
+import SocialImpactBento from '../components/ui/SocialImpactBento'
 import HeroSection from '../components/ui/HeroSection'
 import ProductCard from '../components/ui/ProductCard'
 import SocialLinks from '../components/ui/SocialLinks'
@@ -24,10 +27,10 @@ function StatItem({ target, suffix, label }) {
 function Accordion() {
   const [active, setActive] = useState(0)
   const items = [
-    { icon: '🌱', title: 'Sứ mệnh', text: 'Gìn giữ và phát triển nghề đan chiếu cói truyền thống của làng Phú Tân, tạo sinh kế bền vững cho bà con địa phương, đồng thời đưa sản phẩm thủ công Việt Nam vươn ra thế giới.' },
-    { icon: '🎯', title: 'Tầm nhìn', text: 'Trở thành thương hiệu hàng đầu trong lĩnh vực sản phẩm thủ công từ cói tự nhiên, kết hợp giữa truyền thống và hiện đại, góp phần bảo tồn văn hóa và phát triển kinh tế xanh.' },
-    { icon: '💚', title: 'Giá trị bền vững', text: '100% nguyên liệu tự nhiên, quy trình sản xuất thân thiện môi trường. Mỗi sản phẩm không chỉ đẹp mà còn mang ý nghĩa phát triển bền vững cho cộng đồng.' },
-    { icon: '🤝', title: 'Cộng đồng', text: 'Tạo việc làm ổn định cho hơn 50 nghệ nhân và phụ nữ tại địa phương, truyền dạy kỹ năng cho thế hệ trẻ, xây dựng mô hình kinh doanh cộng đồng bền vững.' }
+    { icon: '🌱', title: 'Sứ mệnh', text: 'Gìn giữ và nâng tầm nghề dệt chiếu cói hơn 100 năm tại Làng nghề Phú Tân (xã An Cư, Tuy An, Phú Yên ven đầm Ô Loan). Tạo sinh kế bền vững cho 219 hộ gia đình và đưa thủ công xứ Nẫu vươn xa.' },
+    { icon: '🎯', title: 'Tầm nhìn', text: 'Chuyển đổi từ dệt chiếu thô sang các dòng phụ kiện thời trang và decor cao cấp, nâng giá trị giờ công lao động của người thợ lên 66.667₫/giờ (tăng gấp ~11.9 lần).' },
+    { icon: '💚', title: 'Giá trị bền vững', text: '100% sợi cói nguyên bản từ cánh đồng 25 ha ven đầm Ô Loan, phơi 2–3 nắng to dẻo dai lên màu mật ong ấm áp, hoàn toàn không hóa chất hay sợi nhựa PE/PP.' },
+    { icon: '🤝', title: 'Cộng đồng', text: 'Hợp tác chặt chẽ cùng HTX Chiếu cói An Cư và hơn 550 lao động địa phương, chi trả 200.000₫ tiền công/sản phẩm, đóng góp trực tiếp vào mục tiêu SDG 1 & SDG 8 Liên Hợp Quốc.' }
   ]
 
   return (
@@ -54,7 +57,7 @@ export default function HomePage() {
     <>
       <HeroSection
         badge="Thủ công truyền thống Việt Nam"
-        title='Gìn Nghề — <em>Giữ Sinh Kế</em>'
+        title='Gìn Nghề — <em><span style="white-space:nowrap">Giữ Sinh Kế</span></em>'
         subtitle="Từ một chiếc chiếu truyền thống, chúng tôi tạo nên những sản phẩm mang giá trị mới — gìn giữ nghề xưa, lan tỏa bản sắc văn hóa dân tộc và kiến tạo tương lai xanh."
         image="/assets/images/hero_banner.jpg"
         cta={
@@ -107,8 +110,22 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Before / After Transformation Slider */}
+      <section className="section section-cream" style={{ paddingTop: '1rem', paddingBottom: '3rem' }}>
+        <div className="section-inner">
+          <BeforeAfterSlider />
+        </div>
+      </section>
+
+      {/* Craft Journey 5-Step Timeline */}
+      <section className="section" id="quy-trinh">
+        <div className="section-inner">
+          <CraftJourneyTimeline />
+        </div>
+      </section>
+
       {/* Philosophy */}
-      <section className="section" id="philosophy">
+      <section className="section section-cream" id="philosophy">
         <div className="section-inner">
           <RevealSection className="section-header">
             <span className="section-label">Triết lý thương hiệu</span>
@@ -124,15 +141,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Stats */}
-      <section className="section section-dark">
+      {/* Social Impact Bento Grid */}
+      <section className="section" id="tac-dong">
         <div className="section-inner">
-          <div className="stats-grid reveal">
-            <StatItem target={50} suffix="+" label="Nghệ nhân" />
-            <StatItem target={1000} suffix="+" label="Sản phẩm / tháng" />
-            <StatItem target={100} suffix="" label="% Nguyên liệu tự nhiên" />
-            <StatItem target={3} suffix=" thế hệ" label="Truyền thống kế thừa" />
-          </div>
+          <SocialImpactBento />
         </div>
       </section>
 

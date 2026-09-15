@@ -249,6 +249,57 @@ app.post('/api/customer/login', async (req, res) => {
   res.json({ token, user: safeUser })
 })
 
+app.post('/api/customer/social-login', async (req, res) => {
+  const store = await readStore()
+  const { provider, email, name, avatar } = req.body
+  const pName = provider === 'google' ? 'Google' : 'Facebook'
+  const normalizedEmail = String(email || `${provider || 'social'}_user@chieunau.vn`).trim().toLowerCase()
+  let user = store.users.find(item => item.email === normalizedEmail)
+
+  if (!user) {
+    const nextId = store.users.reduce((max, u) => Math.max(max, Number(u.id)), 100) + 1
+    user = {
+      id: nextId,
+      username: normalizedEmail,
+      name: String(name || `Khách hàng ${pName}`).trim(),
+      email: normalizedEmail,
+      phone: '0909055594',
+      avatar: avatar || '',
+      provider: provider || 'social',
+      role: 'customer',
+      created_at: new Date().toISOString()
+    }
+    store.users.unshift(user)
+    await writeStore(store)
+  }
+
+  const safeUser = publicUser(user)
+  const token = jwt.sign(safeUser, JWT_SECRET, { expiresIn: '30d' })
+  res.json({ token, user: safeUser })
+})
+
+app.post('/api/customer/demo-login', async (req, res) => {
+  const store = await readStore()
+  let user = store.users.find(item => item.role === 'customer')
+  if (!user) {
+    user = {
+      id: 101,
+      username: 'ngoctoann06@gmail.com',
+      name: 'Nguyễn Ngọc Toàn',
+      email: 'ngoctoann06@gmail.com',
+      phone: '0909055594',
+      role: 'customer',
+      created_at: new Date().toISOString()
+    }
+    store.users.unshift(user)
+    await writeStore(store)
+  }
+
+  const safeUser = publicUser(user)
+  const token = jwt.sign(safeUser, JWT_SECRET, { expiresIn: '30d' })
+  res.json({ token, user: safeUser })
+})
+
 app.get('/api/customer/me', requireCustomer, async (req, res) => {
   const store = await readStore()
   const user = store.users.find((item) => Number(item.id) === Number(req.user.id))

@@ -1,10 +1,16 @@
 import { useParams, useLocation, Link } from 'react-router-dom'
+import { useEffect } from 'react'
 import { formatPrice } from '../utils/api'
+import { playSuccessChime } from '../utils/audioEffects'
 
 export default function OrderSuccessPage() {
   const { id } = useParams()
   const location = useLocation()
   const orderData = location.state?.order
+
+  useEffect(() => {
+    playSuccessChime()
+  }, [])
 
   return (
     <div className="cart-page">

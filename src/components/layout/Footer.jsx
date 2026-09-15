@@ -35,7 +35,7 @@ export default function Footer() {
           <ul className="footer-contact">
             <li>
               <span className="footer-contact-icon">📍</span>
-              <span>Làng nghề Phú Tân, An Giang, Việt Nam</span>
+              <span>Làng nghề chiếu cói Phú Tân, An Cư, Tuy An, Phú Yên (ven đầm Ô Loan)</span>
             </li>
             <li>
               <span className="footer-contact-icon">📧</span>

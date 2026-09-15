@@ -1,4 +1,5 @@
 import { useParallax } from '../../hooks/useAnimations'
+import ArtisanSeal from './ArtisanSeal'
 
 export default function HeroSection({ badge, title, subtitle, cta, image, inner = false, className = '' }) {
   const bgRef = useParallax(0.4)
@@ -14,10 +15,15 @@ export default function HeroSection({ badge, title, subtitle, cta, image, inner 
         {cta && cta}
       </div>
       {!inner && (
-        <div className="hero-scroll-indicator">
-          <span>Cuộn xuống</span>
-          <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-        </div>
+        <>
+          <div className="hero-seal-badge">
+            <ArtisanSeal size={105} />
+          </div>
+          <div className="hero-scroll-indicator">
+            <span>Cuộn xuống</span>
+            <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+          </div>
+        </>
       )}
     </section>
   )

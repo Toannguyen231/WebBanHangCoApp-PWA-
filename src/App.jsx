@@ -6,6 +6,7 @@ import PageLoader from './components/layout/PageLoader'
 import BackToTop from './components/layout/BackToTop'
 import CartDrawer from './components/ui/CartDrawer'
 import SupportHub from './components/ui/SupportHub'
+import AmbienceAudio from './components/ui/AmbienceAudio'
 import PWAInstallBanner from './components/ui/PWAInstallBanner'
 import PWAUpdateToast from './components/ui/PWAUpdateToast'
 
@@ -133,6 +134,7 @@ function App() {
 
       {!isAdmin && <Footer />}
       {!isAdmin && <SupportHub />}
+      {!isAdmin && <AmbienceAudio />}
       <BackToTop />
       {!isAdmin && <PWAInstallBanner />}
       {!isAdmin && <PWAUpdateToast />}

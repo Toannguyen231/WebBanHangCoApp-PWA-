@@ -378,14 +378,24 @@ h1, h2, h3, h4, h5, h6 {
 
 .hero-title {
   font-family: var(--font-heading);
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-size: clamp(2.3rem, 5.5vw, 4.4rem);
   font-weight: 700;
   color: var(--white);
-  line-height: 1.15;
+  line-height: 1.18;
   margin-bottom: 1.1rem;
   opacity: 0;
   transform: translateY(30px);
   animation: fadeSlideUp 0.8s ease 0.5s forwards;
+}
+
+@media (min-width: 992px) {
+  .hero-content {
+    max-width: 1080px;
+  }
+  .hero-title {
+    white-space: nowrap;
+    letter-spacing: -0.01em;
+  }
 }
 
 .hero-title em {

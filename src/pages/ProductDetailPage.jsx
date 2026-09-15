@@ -2,10 +2,12 @@ import { useParams, Link } from 'react-router-dom'
 import { products } from '../data/products'
 import { useCart } from '../contexts/CartContext'
 import { useState } from 'react'
+import CraftMagnifier from '../components/ui/CraftMagnifier'
+import { playWoodTap } from '../utils/audioEffects'
 
 export default function ProductDetailPage() {
   const { slug } = useParams()
-  const product = products.find(p => p.slug === slug)
+  const product = products.find(p => p.slug === slug || (p.aliasSlugs && p.aliasSlugs.includes(slug)) || String(p.id) === slug)
   const { addToCart } = useCart()
   const [quantity, setQuantity] = useState(1)
 
@@ -21,6 +23,7 @@ export default function ProductDetailPage() {
   const related = products.filter(p => p.id !== product.id).slice(0, 3)
 
   const handleAddToCart = () => {
+    playWoodTap()
     addToCart({
       id: product.id,
       name: product.name,
@@ -36,7 +39,7 @@ export default function ProductDetailPage() {
         <div className="section-inner">
           <div className="product-detail">
             <div className="product-detail-image reveal-left">
-              <img src={product.image} alt={product.name} />
+              <CraftMagnifier src={product.image} alt={product.name} />
             </div>
             <div className="product-detail-info reveal-right">
               <span className="section-label">{product.sectionLabel}</span>
@@ -88,6 +91,38 @@ export default function ProductDetailPage() {
                   </svg>
                   Thêm vào giỏ hàng
                 </button>
+              </div>
+
+              {/* Craft Guarantees Block */}
+              <div className="product-craft-guarantees">
+                <div className="craft-guarantee-item">
+                  <span className="craft-guarantee-icon">🌾</span>
+                  <div className="craft-guarantee-text">
+                    <strong>100% Sợi cói bản địa</strong>
+                    <small>Thu hoạch tự nhiên tại Phú Tân</small>
+                  </div>
+                </div>
+                <div className="craft-guarantee-item">
+                  <span className="craft-guarantee-icon">🤲</span>
+                  <div className="craft-guarantee-text">
+                    <strong>Đan tay thủ công</strong>
+                    <small>Mỗi tác phẩm là một độc bản</small>
+                  </div>
+                </div>
+                <div className="craft-guarantee-item">
+                  <span className="craft-guarantee-icon">📦</span>
+                  <div className="craft-guarantee-text">
+                    <strong>Hộp quà sinh thái</strong>
+                    <small>Bao bì tái chế thân thiện môi trường</small>
+                  </div>
+                </div>
+                <div className="craft-guarantee-item">
+                  <span className="craft-guarantee-icon">🛡️</span>
+                  <div className="craft-guarantee-text">
+                    <strong>Minh bạch nguồn gốc</strong>
+                    <small>Mã QR kết nối nghệ nhân</small>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

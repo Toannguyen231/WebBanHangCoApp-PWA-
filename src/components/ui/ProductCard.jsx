@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useCart } from '../../contexts/CartContext'
+import { playWoodTap } from '../../utils/audioEffects'
 
 export default function ProductCard({ product }) {
   const { addToCart } = useCart()
@@ -7,6 +8,7 @@ export default function ProductCard({ product }) {
   const handleAddToCart = (e) => {
     e.preventDefault()
     e.stopPropagation()
+    playWoodTap()
     addToCart({
       id: product.id,
       name: product.name,
@@ -19,6 +21,12 @@ export default function ProductCard({ product }) {
   return (
     <div className="product-card">
       <Link to={`/san-pham/${product.slug}`} className="product-card-image">
+        {product.sectionLabel && (
+          <span className="product-card-craft-badge">
+            <span className="craft-badge-dot" />
+            {product.sectionLabel}
+          </span>
+        )}
         <img src={product.image} alt={product.name} loading="lazy" />
         <div className="product-card-overlay"></div>
       </Link>
