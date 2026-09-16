@@ -1,16 +1,30 @@
 import { useParallax } from '../../hooks/useAnimations'
 import ArtisanSeal from './ArtisanSeal'
 
-export default function HeroSection({ badge, title, subtitle, cta, image, inner = false, className = '' }) {
+export default function HeroSection({
+  badge,
+  title,
+  subtitle,
+  cta,
+  image,
+  bgImage,
+  inner = false,
+  className = ''
+}) {
   const bgRef = useParallax(0.4)
+  const heroImage = image || bgImage || '/assets/images/hero_banner.jpg'
 
   return (
     <section className={`hero ${inner ? 'hero-inner' : ''} ${className}`.trim()}>
-      <div className="hero-bg" ref={bgRef} style={{ backgroundImage: `url('${image}')` }}></div>
+      <div className="hero-bg" ref={bgRef} style={{ backgroundImage: `url('${heroImage}')` }}></div>
       <div className="hero-overlay"></div>
       <div className="hero-content">
         {badge && <div className="hero-badge">{badge}</div>}
-        <h1 className="hero-title" dangerouslySetInnerHTML={{ __html: title }}></h1>
+        {typeof title === 'string' ? (
+          <h1 className="hero-title" dangerouslySetInnerHTML={{ __html: title }} />
+        ) : (
+          <h1 className="hero-title">{title}</h1>
+        )}
         {subtitle && <p className="hero-subtitle">{subtitle}</p>}
         {cta && cta}
       </div>
@@ -28,3 +42,4 @@ export default function HeroSection({ badge, title, subtitle, cta, image, inner 
     </section>
   )
 }
+

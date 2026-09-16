@@ -1,4 +1,4 @@
-import { Routes, Route, useLocation, Link } from 'react-router-dom'
+import { Routes, Route, useLocation, Link, Navigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import Navbar from './components/layout/Navbar'
 import Footer from './components/layout/Footer'
@@ -53,17 +53,11 @@ function App() {
   const isAdmin = location.pathname.startsWith('/admin')
   const hasPageHero = [
     '/',
-    '/index.html',
     '/cau-chuyen',
-    '/cau-chuyen.html',
     '/san-pham',
-    '/san-pham.html',
     '/qua-tang-doanh-nghiep',
-    '/qua-tang-doanh-nghiep.html',
     '/tac-dong-xa-hoi',
-    '/tac-dong-xa-hoi.html',
-    '/cam-nang',
-    '/cam-nang.html'
+    '/cam-nang'
   ].includes(location.pathname)
   usePageReveals([location.pathname, location.search])
 
@@ -80,18 +74,18 @@ function App() {
       <Routes>
         {/* Public Routes */}
         <Route path="/" element={<HomePage />} />
-        <Route path="/index.html" element={<HomePage />} />
+        <Route path="/index.html" element={<Navigate to="/" replace />} />
         <Route path="/cau-chuyen" element={<StoryPage />} />
-        <Route path="/cau-chuyen.html" element={<StoryPage />} />
+        <Route path="/cau-chuyen.html" element={<Navigate to="/cau-chuyen" replace />} />
         <Route path="/san-pham" element={<ProductsPage />} />
-        <Route path="/san-pham.html" element={<ProductsPage />} />
+        <Route path="/san-pham.html" element={<Navigate to="/san-pham" replace />} />
         <Route path="/san-pham/:slug" element={<ProductDetailPage />} />
         <Route path="/qua-tang-doanh-nghiep" element={<B2BGiftsPage />} />
-        <Route path="/qua-tang-doanh-nghiep.html" element={<B2BGiftsPage />} />
+        <Route path="/qua-tang-doanh-nghiep.html" element={<Navigate to="/qua-tang-doanh-nghiep" replace />} />
         <Route path="/tac-dong-xa-hoi" element={<SocialImpactPage />} />
-        <Route path="/tac-dong-xa-hoi.html" element={<SocialImpactPage />} />
+        <Route path="/tac-dong-xa-hoi.html" element={<Navigate to="/tac-dong-xa-hoi" replace />} />
         <Route path="/cam-nang" element={<GuidePage />} />
-        <Route path="/cam-nang.html" element={<GuidePage />} />
+        <Route path="/cam-nang.html" element={<Navigate to="/cam-nang" replace />} />
         <Route path="/gio-hang" element={<CartPage />} />
         <Route path="/thanh-toan" element={<CheckoutPage />} />
         <Route path="/dat-hang-thanh-cong/:id" element={<OrderSuccessPage />} />
@@ -100,7 +94,7 @@ function App() {
         <Route path="/tai-khoan" element={<AccountPage />} />
         <Route path="/offline" element={<OfflinePage />} />
         <Route path="/quet-ma" element={<VerifyPage />} />
-        <Route path="/quet-ma.html" element={<VerifyPage />} />
+        <Route path="/quet-ma.html" element={<Navigate to="/quet-ma" replace />} />
 
         {/* Admin Routes */}
         <Route path="/admin/login" element={<AdminLogin />} />

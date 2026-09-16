@@ -27,6 +27,15 @@
       ]
     }
   ],
+  "redirects": [
+    { "source": "/index.html", "destination": "/", "permanent": true },
+    { "source": "/cau-chuyen.html", "destination": "/cau-chuyen", "permanent": true },
+    { "source": "/san-pham.html", "destination": "/san-pham", "permanent": true },
+    { "source": "/qua-tang-doanh-nghiep.html", "destination": "/qua-tang-doanh-nghiep", "permanent": true },
+    { "source": "/tac-dong-xa-hoi.html", "destination": "/tac-dong-xa-hoi", "permanent": true },
+    { "source": "/cam-nang.html", "destination": "/cam-nang", "permanent": true },
+    { "source": "/quet-ma.html", "destination": "/quet-ma", "permanent": true }
+  ],
   "rewrites": [
     {
       "source": "/(.*)",
