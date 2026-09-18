@@ -633,9 +633,20 @@ h1, h2, h3, h4, h5, h6 {
 /* --- Product Cards Grid --- */
 .products-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: var(--grid-gap);
   align-items: stretch;
+}
+
+/* Khi chỉ có 1 sản phẩm: căn giữa thẻ và giới hạn độ rộng cân đối (không bị bè to toàn màn hình) */
+.products-grid--single {
+  display: flex;
+  justify-content: center;
+}
+
+.products-grid--single .product-card {
+  width: 100%;
+  max-width: 360px;
 }
 
 .product-card {
@@ -649,6 +660,8 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   flex-direction: column;
   min-width: 0;
+  max-width: 420px;
+  width: 100%;
   position: relative;
 }
 
@@ -2527,7 +2540,7 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   .products-grid {
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
     gap: 1.5rem;
   }
 

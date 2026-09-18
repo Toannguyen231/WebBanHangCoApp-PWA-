@@ -49,7 +49,7 @@ export default function ProductsPage() {
       {/* Products Grid */}
       <section className="section section-cream">
         <div className="section-inner">
-          <div ref={ref} className="products-grid stagger-children reveal">
+          <div ref={ref} className={`products-grid stagger-children reveal ${filtered.length === 1 ? 'products-grid--single' : ''}`}>
             {filtered.map(p => <ProductCard key={p.id} product={p} />)}
           </div>
           {filtered.length === 0 && (

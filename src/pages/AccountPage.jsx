@@ -235,51 +235,118 @@ export default function AccountPage() {
       <main className="auth-page">
         <FloatingDots />
         <section className={`auth-card auth-card--profile ${mounted ? 'auth-card--visible' : ''}`}>
-          <div className="auth-profile-avatar">
-            <span>{customer.name?.charAt(0)?.toUpperCase() || 'K'}</span>
+          {/* Header */}
+          <div className="auth-profile-header">
+            <div className="auth-profile-avatar">
+              {customer.avatar ? (
+                <img src={customer.avatar} alt={customer.name} />
+              ) : (
+                <span>{customer.name?.charAt(0)?.toUpperCase() || 'K'}</span>
+              )}
+            </div>
+            <div className="auth-profile-badge">
+              <span className="auth-badge-dot" />
+              <span>Tài khoản của bạn</span>
+            </div>
+            <h1 className="auth-profile-title">Xin chào, {customer.name}! 👋</h1>
+            <p className="auth-profile-subtitle">Chào mừng bạn đã trở lại với Chiếu Nẫu</p>
           </div>
-          <span className="section-label">Tài khoản của bạn</span>
-          <h1>Xin chào, {customer.name}! 👋</h1>
 
+          {/* User Info */}
           <div className="auth-profile-info">
             <div className="auth-info-item">
               <div className="auth-info-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" width="20" height="20"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" width="20" height="20">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                  <polyline points="22,6 12,13 2,6"/>
+                </svg>
               </div>
-              <div>
-                <span>Email</span>
-                <strong>{customer.email || 'Chưa cập nhật'}</strong>
+              <div className="auth-info-text">
+                <span className="auth-info-label">Email</span>
+                <strong className="auth-info-value">{customer.email || 'Chưa cập nhật'}</strong>
               </div>
             </div>
+
             <div className="auth-info-item">
               <div className="auth-info-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" width="20" height="20"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" width="20" height="20">
+                  <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+                </svg>
               </div>
-              <div>
-                <span>Số điện thoại</span>
-                <strong>{customer.phone || 'Chưa cập nhật'}</strong>
+              <div className="auth-info-text">
+                <span className="auth-info-label">Số điện thoại</span>
+                <strong className="auth-info-value">{customer.phone || 'Chưa cập nhật'}</strong>
               </div>
             </div>
+
+            {customer.address && (
+              <div className="auth-info-item">
+                <div className="auth-info-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" width="20" height="20">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                    <circle cx="12" cy="10" r="3" />
+                  </svg>
+                </div>
+                <div className="auth-info-text">
+                  <span className="auth-info-label">Địa chỉ nhận hàng</span>
+                  <strong className="auth-info-value">{customer.address}</strong>
+                </div>
+              </div>
+            )}
           </div>
 
-          <div className="auth-profile-actions">
-            <Link to="/quet-ma" className="auth-btn auth-btn--outline" style={{ borderColor: 'var(--primary)', color: 'var(--primary)' }}>
+          {/* Quick Actions Nav */}
+          <div className="auth-profile-nav">
+            <Link to="/san-pham" className="auth-nav-card auth-nav-card--primary">
+              <div className="auth-nav-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="20" height="20">
+                  <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+                  <line x1="3" y1="6" x2="21" y2="6"/>
+                  <path d="M16 10a4 4 0 01-8 0"/>
+                </svg>
+              </div>
+              <div className="auth-nav-text">
+                <strong className="auth-nav-title">Tiếp tục mua sắm</strong>
+                <span className="auth-nav-desc">Khám phá bộ sưu tập chiếu thủ công & quà tặng</span>
+              </div>
+              <div className="auth-nav-arrow" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" width="18" height="18">
+                  <polyline points="9 18 15 12 9 6"/>
+                </svg>
+              </div>
+            </Link>
+
+            <Link to="/quet-ma" className="auth-nav-card">
+              <div className="auth-nav-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="20" height="20">
+                  <path d="M3 7V5a2 2 0 0 1 2-2h2"/>
+                  <path d="M17 3h2a2 2 0 0 1 2 2v2"/>
+                  <path d="M21 17v2a2 2 0 0 1-2 2h-2"/>
+                  <path d="M7 21H5a2 2 0 0 1-2-2v-2"/>
+                  <rect x="7" y="7" width="10" height="10" rx="1.5"/>
+                </svg>
+              </div>
+              <div className="auth-nav-text">
+                <strong className="auth-nav-title">Quét mã & Xác thực sản phẩm</strong>
+                <span className="auth-nav-desc">Tra cứu nguồn gốc và bảo hành làng nghề</span>
+              </div>
+              <div className="auth-nav-arrow" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" width="18" height="18">
+                  <polyline points="9 18 15 12 9 6"/>
+                </svg>
+              </div>
+            </Link>
+          </div>
+
+          {/* Logout Action */}
+          <div className="auth-profile-footer">
+            <button type="button" className="auth-logout-btn" onClick={logout}>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="18" height="18">
-                <path d="M3 7V5a2 2 0 0 1 2-2h2"></path>
-                <path d="M17 3h2a2 2 0 0 1 2 2v2"></path>
-                <path d="M21 17v2a2 2 0 0 1-2 2h-2"></path>
-                <path d="M7 21H5a2 2 0 0 1-2-2v-2"></path>
-                <rect x="7" y="7" width="10" height="10" rx="1.5"></rect>
+                <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/>
+                <polyline points="16 17 21 12 16 7"/>
+                <line x1="21" y1="12" x2="9" y2="12"/>
               </svg>
-              Quét mã / Xác thực sản phẩm
-            </Link>
-            <Link to="/san-pham" className="auth-btn auth-btn--primary">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="18" height="18"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-              Tiếp tục mua sắm
-            </Link>
-            <button className="auth-btn auth-btn--outline" onClick={logout}>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="18" height="18"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
-              Đăng xuất
+              <span>Đăng xuất tài khoản</span>
             </button>
           </div>
         </section>

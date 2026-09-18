@@ -292,6 +292,17 @@
   ],
   "users": [
     {
+      "id": 103,
+      "username": "google_user@chieunau.vn",
+      "name": "Khách hàng Google",
+      "email": "google_user@chieunau.vn",
+      "phone": "0909055594",
+      "avatar": "",
+      "provider": "google",
+      "role": "customer",
+      "created_at": "2026-09-18T15:16:41.979Z"
+    },
+    {
       "id": 102,
       "username": "nhanvien.chieu@gmail.com",
       "name": "Tran Van Nhan",
